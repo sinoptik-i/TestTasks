@@ -1,0 +1,70 @@
+package com.sinoptik_.ru92.presentation
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.viewbinding.ViewBinding
+import com.sinoptik_.ru92.presentation.viewmodels.BaseLoadingVM
+import com.sinoptik_.ru92.presentation.viewmodels.LoadState
+import kotlinx.coroutines.launch
+
+abstract class BaseFragment<VB:ViewBinding,Input, DataSource> : Fragment() {
+
+//binding && UI
+//------------------------------------------------------------------------------------
+protected var _binding: VB? = null
+    protected val binding:   VB
+        get() = _binding ?: throw IllegalStateException("Binding is null")
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = createBinding(inflater, container)
+        return _binding!!.root
+    }
+
+    protected abstract fun createBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): VB
+
+    abstract fun onSuccess(data: DataSource)
+    abstract fun loadingBehavior()
+
+    //VM subscribing  &&DataState logic
+//------------------------------------------------------------------------------------
+    abstract val viewModel: BaseLoadingVM<Input, DataSource>
+
+    protected fun subscribeToViewModel() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.state.collect { state ->
+                    when (val current = state) {
+                        is LoadState.Loading -> {
+                            loadingBehavior()
+                        }
+
+                        is LoadState.Success -> {
+                            current.data?.let {
+                                onSuccess(it)
+                            }
+                            //binding.progressBar.visibility = View.GONE
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+}
