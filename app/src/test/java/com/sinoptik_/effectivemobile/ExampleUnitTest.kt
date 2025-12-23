@@ -1,6 +1,6 @@
 package com.sinoptik_.effectivemobile
 
-import com.sinoptik_.effectivemobile.practice1.task4.Task4
+import com.sinoptik_.effectivemobile.practice_kotlin.task4.Task4
 import org.junit.Test
 
 import org.junit.Assert.*

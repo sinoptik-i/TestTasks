@@ -1,7 +1,6 @@
-package com.sinoptik_.effectivemobile.practice1.ru66
+package com.sinoptik_.effectivemobile.practice_kotlin.ru66
 
 import android.content.SharedPreferences
-import android.util.Log
 import android.util.Log.e
 import kotlinx.coroutines.*
 
@@ -19,7 +18,7 @@ fun SharedPreferences.saveDataAsync(
 ) {
     val editor = this.edit()
     val handler = CoroutineExceptionHandler { _, exception ->
-        Log.e(TASK5, "${exception.message}")
+        e(TASK5, "${exception.message}")
     }
 
     scope.launch(Dispatchers.IO + handler) {
@@ -49,6 +48,7 @@ fun SharedPreferences.saveDataAsync(
                         onSuccess()
                     } else {
                         onError(Exception("Commit operation failed"))
+                        return@launch
                     }
                 }
             }

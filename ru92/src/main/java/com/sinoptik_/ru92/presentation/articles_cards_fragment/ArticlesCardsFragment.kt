@@ -29,10 +29,10 @@ class ArticlesCardsFragment : BaseFragment<FragmentArticleDetailBinding, Int, Ar
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+/*    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         subscribeToViewModel()
-    }
+    }*/
 
     override fun loadingBehavior() {
         binding.progressBar.visibility = View.VISIBLE

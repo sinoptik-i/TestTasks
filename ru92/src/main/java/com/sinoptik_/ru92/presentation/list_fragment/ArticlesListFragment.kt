@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -44,7 +45,7 @@ class ArticlesListFragment : BaseFragment<FragmentListBinding, Unit, List<Articl
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         setupSwipeRefresh()
-        subscribeToViewModel()
+      //  subscribeToViewModel()
         viewModel.loadData()
     }
 
@@ -82,6 +83,15 @@ class ArticlesListFragment : BaseFragment<FragmentListBinding, Unit, List<Articl
         else
             View.GONE
     }
+
+/*    override fun showErrorMessage(message: String) {
+        val toast=Toast.makeText(
+            context,
+            message,
+            Toast.LENGTH_SHORT
+        )
+        toast.show()
+    }*/
 
 
     override fun onDestroyView() {

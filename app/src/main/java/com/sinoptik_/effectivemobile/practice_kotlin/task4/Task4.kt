@@ -1,4 +1,4 @@
-package com.sinoptik_.effectivemobile.practice1.task4
+package com.sinoptik_.effectivemobile.practice_kotlin.task4
 
 import java.util.Collections
 

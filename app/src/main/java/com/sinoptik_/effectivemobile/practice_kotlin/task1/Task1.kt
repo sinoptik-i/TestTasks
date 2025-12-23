@@ -1,4 +1,4 @@
-package com.sinoptik_.effectivemobile.practice1.task1
+package com.sinoptik_.effectivemobile.practice_kotlin.task1
 
 
 

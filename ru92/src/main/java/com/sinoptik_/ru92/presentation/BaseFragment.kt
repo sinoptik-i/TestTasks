@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -37,12 +38,12 @@ protected var _binding: VB? = null
 
     abstract fun onSuccess(data: DataSource)
     abstract fun loadingBehavior()
-
+   // abstract fun showErrorMessage(message:String)
     //VM subscribing  &&DataState logic
 //------------------------------------------------------------------------------------
     abstract val viewModel: BaseLoadingVM<Input, DataSource>
 
-    protected fun subscribeToViewModel() {
+    private fun subscribeToViewModel() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.state.collect { state ->
@@ -57,10 +58,29 @@ protected var _binding: VB? = null
                             }
                             //binding.progressBar.visibility = View.GONE
                         }
+                        is LoadState.Error->{
+                            current.throwable.message?.let{
+                                showErrorMessage(it)
+                            }
+                        }
                     }
                 }
             }
         }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        subscribeToViewModel()
+    }
+
+    fun showErrorMessage(message: String) {
+        val toast=Toast.makeText(
+            context,
+            message,
+            Toast.LENGTH_SHORT
+        )
+        toast.show()
     }
 
     override fun onDestroyView() {

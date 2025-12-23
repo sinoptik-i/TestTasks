@@ -1,4 +1,4 @@
-package com.sinoptik_.effectivemobile.practice1.task2
+package com.sinoptik_.effectivemobile.practice_kotlin.task2
 
 /*Написать свой делегат, который будет кешировать время запуска приложения.
 Раз в 3 секунды выводить закешированное значение в логи Не в UI потоке.*/
