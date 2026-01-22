@@ -52,4 +52,6 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-rc01")
+
+    implementation(project(":emPracticeLibrary"))
 }

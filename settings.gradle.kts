@@ -22,3 +22,5 @@ dependencyResolutionManagement {
 rootProject.name = "EffectiveMobile"
 include(":app")
 include(":ru92")
+include(":rxpractice")
+include(":emPracticeLibrary")

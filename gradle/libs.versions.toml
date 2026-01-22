@@ -13,6 +13,14 @@ appcompat = "1.7.1"
 constraintlayout = "2.1.4"
 navigationFragmentKtx = "2.9.5"
 navigationUiKtx = "2.9.5"
+lifecycleLivedataKtx = "2.10.0"
+lifecycleViewmodelKtx = "2.10.0"
+fragmentKtx = "1.8.9"
+
+rxandroid = "3.0.2"
+rxbindingCore = "4.0.0"
+rxjava = "3.1.12"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -34,9 +42,18 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
+androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtx" }
+androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
+androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
+
+rx-android = { module = "io.reactivex.rxjava3:rxandroid", version.ref = "rxandroid" }
+rx-java = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxjava" }
+rxbinding-core = { module = "com.jakewharton.rxbinding4:rxbinding-core", version.ref = "rxbindingCore" }
+#rx-binding={module="com.jakewharton.rxbinding4",name="rxbinding-core",version.ref="rxbinding"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+android-library = { id = "com.android.library", version.ref = "agp" }
 

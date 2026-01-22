@@ -4,16 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.sinoptik_.empracticelibrary.data.model.Article
+import com.sinoptik_.empracticelibrary.presentation.ArticlesAdapter
+import com.sinoptik_.empracticelibrary.presentation.fragments.BaseFragment
 import com.sinoptik_.ru92.R
-import com.sinoptik_.ru92.data.model.Article
 import com.sinoptik_.ru92.databinding.FragmentListBinding
 import com.sinoptik_.ru92.domain.usecase.GetArticlesUC
-import com.sinoptik_.ru92.presentation.BaseFragment
+
 import com.sinoptik_.ru92.presentation.viewmodels.ArticlesListFragmentVM
+
+
+
 
 
 class ArticlesListFragment : BaseFragment<FragmentListBinding, Unit, List<Article>>() {

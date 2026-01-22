@@ -1,6 +1,8 @@
 package com.sinoptik_.ru92.domain.usecase
 
-import com.sinoptik_.ru92.data.model.Article
+import com.sinoptik_.empracticelibrary.data.model.Article
+import com.sinoptik_.empracticelibrary.domain.LoadDataUseCase
+
 
 class GetArticlesUC : LoadDataUseCase<Unit, List<Article>>() {
     override fun loadData(input: Unit): List<Article> = repository.getAllArticles().let {

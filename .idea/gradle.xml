@@ -11,7 +11,9 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/emPracticeLibrary" />
             <option value="$PROJECT_DIR$/ru92" />
+            <option value="$PROJECT_DIR$/rxpractice" />
           </set>
         </option>
       </GradleProjectSettings>
