@@ -1,59 +1,21 @@
 package com.sinoptik_.empracticelibrary.presentation
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
-import com.sinoptik_.empracticelibrary.data.model.Article
-import com.sinoptik_.empracticelibrary.databinding.ItemArticleBinding
+import com.sinoptik_.empracticelibrary.data.article.model.Article
+import com.sinoptik_.empracticelibrary.databinding.TextItemBinding
+import com.sinoptik_.empracticelibrary.presentation.adapters.BaseListAdapter
+
 
 class ArticlesAdapter(
-    private val onItemClick: (Article) -> Unit = {}
-) : ListAdapter<Article, ArticlesAdapter.ViewHolder>(ArticleDiffCallback()) {
-
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(
-            ItemArticleBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            ),
-            onItemClick
-        )
+    onItemClick: (Article, Int) -> Unit = { _, _,->}
+) : BaseListAdapter<Article, TextItemBinding>(
+    TextItemBinding::inflate,
+    onItemClick
+) {
+    override fun bind(
+        binding: TextItemBinding,
+        item: Article,
+        position: Int
+    ) {
+        binding.textItem.text = item.title
     }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position))
-    }
-
-    class ViewHolder(
-        private val binding: ItemArticleBinding,
-        private val onItemClick: (Article) -> Unit
-    ) : RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(article: Article) {
-            binding.apply {
-                articleTitle.text = article.title
-                root.setOnClickListener {
-                    val pos = bindingAdapterPosition
-                    // onClick()
-                    onItemClick(article)
-                }
-            }
-        }
-    }
-
-
-    private class ArticleDiffCallback : DiffUtil.ItemCallback<Article>() {
-        override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
-            return oldItem.id == newItem.id
-        }
-
-        override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
-            return oldItem == newItem
-        }
-    }
-
 }

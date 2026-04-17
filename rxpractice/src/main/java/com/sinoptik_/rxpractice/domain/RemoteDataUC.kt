@@ -1,7 +1,7 @@
 package com.sinoptik_.rxpractice.domain
 
 
-import com.sinoptik_.empracticelibrary.data.model.articles
+import com.sinoptik_.empracticelibrary.data.article.model.articles
 import io.reactivex.rxjava3.core.Observable
 
 

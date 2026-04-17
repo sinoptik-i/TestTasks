@@ -3,6 +3,7 @@ package com.sinoptik_.androidsdkpractice.ui.navigation
 import com.sinoptik_.androidsdkpractice.ui.fragment1.Fragment1
 import com.sinoptik_.androidsdkpractice.ui.fragment1.Fragment2
 import com.sinoptik_.androidsdkpractice.ui.fragment1.Fragment3
+import com.sinoptik_.empracticelibrary.presentation.navigation.Navigator
 
 sealed class Route {
     object Fragment1 : Route()

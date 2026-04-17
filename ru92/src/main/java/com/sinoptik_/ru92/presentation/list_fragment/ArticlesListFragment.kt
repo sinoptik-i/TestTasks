@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.sinoptik_.empracticelibrary.data.model.Article
+import com.sinoptik_.empracticelibrary.data.article.model.Article
 import com.sinoptik_.empracticelibrary.presentation.ArticlesAdapter
-import com.sinoptik_.empracticelibrary.presentation.fragments.BaseFragment
+import com.sinoptik_.empracticelibrary.presentation.fragments.BaseLoadDataFragment
 import com.sinoptik_.ru92.R
 import com.sinoptik_.ru92.databinding.FragmentListBinding
 import com.sinoptik_.ru92.domain.usecase.GetArticlesUC
@@ -17,15 +17,12 @@ import com.sinoptik_.ru92.domain.usecase.GetArticlesUC
 import com.sinoptik_.ru92.presentation.viewmodels.ArticlesListFragmentVM
 
 
-
-
-
-class ArticlesListFragment : BaseFragment<FragmentListBinding, Unit, List<Article>>() {
+class ArticlesListFragment : BaseLoadDataFragment<FragmentListBinding, Unit, List<Article>>() {
 
     private val getArticlesUC = GetArticlesUC()
     override val viewModel = ArticlesListFragmentVM(getArticlesUC)
 
-    private val adapter = ArticlesAdapter { article ->
+    private val adapter = ArticlesAdapter { article, _ ->
         var bundle = bundleOf("id" to article.id)
         findNavController().navigate(
             R.id.action_listFragment_to_articleDetailFragment, bundle
@@ -49,12 +46,12 @@ class ArticlesListFragment : BaseFragment<FragmentListBinding, Unit, List<Articl
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         setupSwipeRefresh()
-      //  subscribeToViewModel()
+        //  subscribeToViewModel()
         viewModel.loadData()
     }
 
     private fun setupRecyclerView() {
-        binding.articlesRecyclerView.apply {
+        binding.recycler.apply {
             adapter = this@ArticlesListFragment.adapter
             layoutManager = LinearLayoutManager(requireContext())
             setHasFixedSize(true)
@@ -71,7 +68,7 @@ class ArticlesListFragment : BaseFragment<FragmentListBinding, Unit, List<Articl
 
 
     override fun onSuccess(data: List<Article>) {
-        val lm = binding.articlesRecyclerView.layoutManager
+        val lm = binding.recycler.layoutManager
         val sst = lm?.onSaveInstanceState()
         adapter.submitList(data) {
             lm?.onRestoreInstanceState(sst)
@@ -88,14 +85,14 @@ class ArticlesListFragment : BaseFragment<FragmentListBinding, Unit, List<Articl
             View.GONE
     }
 
-/*    override fun showErrorMessage(message: String) {
-        val toast=Toast.makeText(
-            context,
-            message,
-            Toast.LENGTH_SHORT
-        )
-        toast.show()
-    }*/
+    /*    override fun showErrorMessage(message: String) {
+            val toast=Toast.makeText(
+                context,
+                message,
+                Toast.LENGTH_SHORT
+            )
+            toast.show()
+        }*/
 
 
     override fun onDestroyView() {

@@ -1,4 +1,4 @@
-package com.sinoptik_.empracticelibrary.data.model
+package com.sinoptik_.empracticelibrary.data.article.model
 
 data class Article(
     val id: Int,

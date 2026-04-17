@@ -1,4 +1,4 @@
-package com.sinoptik_.androidsdkpractice.ui.navigation
+package com.sinoptik_.empracticelibrary.presentation.navigation
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment

@@ -1,4 +1,4 @@
-package com.sinoptik_.empracticelibrary.domain.workmanager
+package com.sinoptik_.empracticelibrary.domain.workmanager.charging
 
 import android.content.Context
 import android.util.Log
@@ -15,7 +15,7 @@ class ChargingWorker(context: Context, params: WorkerParameters) : Worker(contex
             "Зарядка идет From WorkManager",
             "Ваше устройство подключено к сети"
         )
-        Log.d("MyWorker", "Work started")
+        Log.d("MyWorker", "ChargingWorker Work started")
         return Result.success()
     }
 

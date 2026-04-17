@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.sinoptik_.empracticelibrary.data.model.Article
-import com.sinoptik_.empracticelibrary.presentation.fragments.BaseFragment
+import com.sinoptik_.empracticelibrary.data.article.model.Article
+import com.sinoptik_.empracticelibrary.presentation.fragments.BaseLoadDataFragment
 import com.sinoptik_.ru92.databinding.FragmentArticleDetailBinding
 import com.sinoptik_.ru92.presentation.viewmodels.ArticlesCardsFragmentVM
 
-class ArticlesCardsFragment : BaseFragment<FragmentArticleDetailBinding, Int, Article?>() {
+class ArticlesCardsFragment : BaseLoadDataFragment<FragmentArticleDetailBinding, Int, Article?>() {
 
     override val viewModel = ArticlesCardsFragmentVM()
     private var articleId: Int = 0

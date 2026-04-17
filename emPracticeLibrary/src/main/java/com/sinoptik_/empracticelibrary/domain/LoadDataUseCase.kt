@@ -1,6 +1,6 @@
 package com.sinoptik_.empracticelibrary.domain
 
-import com.sinoptik_.empracticelibrary.data.ArticleRepository
+import com.sinoptik_.empracticelibrary.data.article.ArticleRepository
 
 abstract class LoadDataUseCase<Input, Output> {
     protected val repository = ArticleRepository()

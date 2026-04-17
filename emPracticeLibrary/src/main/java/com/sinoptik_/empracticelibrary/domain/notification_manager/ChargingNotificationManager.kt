@@ -3,6 +3,7 @@ package com.sinoptik_.empracticelibrary.domain.notification_manager
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import android.util.Log
 import androidx.core.app.NotificationCompat
 
 object ChargingNotificationManager {
@@ -29,6 +30,7 @@ object ChargingNotificationManager {
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setAutoCancel(true)
 
+        Log.d("MyWorker", "ChargingWorker notify")
         notificationManager.notify(id, builder.build())
     }
 }

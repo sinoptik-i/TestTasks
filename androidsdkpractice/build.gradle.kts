@@ -6,7 +6,7 @@ plugins {
 android {
     namespace = "com.sinoptik_.androidsdkpractice"
     compileSdk {
-        version = release(36)
+        version = release(35)
     }
 
     defaultConfig {
@@ -48,6 +48,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation(libs.androidx.work.runtime.ktx)
 
     implementation(project(":emPracticeLibrary"))
 }

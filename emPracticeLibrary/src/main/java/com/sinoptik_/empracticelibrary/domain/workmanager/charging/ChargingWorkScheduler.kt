@@ -1,4 +1,4 @@
-package com.sinoptik_.empracticelibrary.domain.workmanager
+package com.sinoptik_.empracticelibrary.domain.workmanager.charging
 
 import android.content.Context
 import androidx.work.Constraints
@@ -7,7 +7,7 @@ import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import java.util.concurrent.TimeUnit
 
-object ChargingWorkManager {
+object ChargingWorkScheduler {
 
     private const val WORK_NAME = "ChargingCheckWork"
 

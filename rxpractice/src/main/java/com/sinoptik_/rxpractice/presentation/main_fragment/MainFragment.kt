@@ -25,20 +25,13 @@ class MainFragment : Fragment() {
     private var disposeRV: Disposable? = null
     private var disposeRVItemClick: Disposable? = null
 
-
-    ////    private var binding: FragmentMainBinding? = null
-//    private var binding: FragmentMainBinding?=null
-//        get() = binding ?: throw IllegalStateException("Binding is null")
-//        set(value) {
-//
-//        }
     private var _binding: FragmentMainBinding? = null
     private val binding: FragmentMainBinding
         get() = _binding ?: throw IllegalStateException("Binding is null")
 
 
     private val viewModel: MainViewModel by viewModels()
-    private val adapter = MyAdapter { num ->
+    private val adapter = ArticleAdapter2 {_, num ->
         viewModel.onItemClick(num)
     }
 

@@ -1,6 +1,6 @@
 package com.sinoptik_.ru92.presentation.viewmodels
 
-import com.sinoptik_.empracticelibrary.data.model.Article
+import com.sinoptik_.empracticelibrary.data.article.model.Article
 import com.sinoptik_.empracticelibrary.presentation.LoadState
 import com.sinoptik_.empracticelibrary.presentation.viewmodels.BaseLoadingVM
 import com.sinoptik_.ru92.domain.usecase.GetArticleByIdUC

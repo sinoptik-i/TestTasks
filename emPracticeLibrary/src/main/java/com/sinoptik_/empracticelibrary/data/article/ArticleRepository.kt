@@ -1,6 +1,6 @@
-package com.sinoptik_.empracticelibrary.data
+package com.sinoptik_.empracticelibrary.data.article
 
-import com.sinoptik_.empracticelibrary.data.model.articles
+import com.sinoptik_.empracticelibrary.data.article.model.articles
 
 class ArticleRepository {
 
