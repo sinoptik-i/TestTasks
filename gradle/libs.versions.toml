@@ -23,6 +23,7 @@ rxjava = "3.1.12"
 workRuntimeKtx = "2.11.1"
 viewpager2 = "1.1.0"
 dagger = "2.51.1"
+koin = "3.5.0"
 
 
 
@@ -61,7 +62,7 @@ androidx-viewpager2 = { group = "androidx.viewpager2", name = "viewpager2", vers
 #rx-binding={module="com.jakewharton.rxbinding4",name="rxbinding-core",version.ref="rxbinding"}
 dagger = { group = "com.google.dagger", name = "dagger", version.ref = "dagger" }
 dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "dagger" }
-
+koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
 
 
 [plugins]
