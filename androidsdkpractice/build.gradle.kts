@@ -5,9 +5,10 @@ plugins {
 
 android {
     namespace = "com.sinoptik_.androidsdkpractice"
-    compileSdk {
+    compileSdk = libs.versions.compileSdk.get().toInt()
+   /* compileSdk {
         version = release(35)
-    }
+    }*/
 
     defaultConfig {
         applicationId = "com.sinoptik_.androidsdkpractice"

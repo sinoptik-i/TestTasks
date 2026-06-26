@@ -5,9 +5,10 @@ plugins {
 
 android {
     namespace = "com.sinoptik_.empracticelibrary"
-    compileSdk {
+    compileSdk = libs.versions.compileSdk.get().toInt()
+ /*   compileSdk {
         version = release(36)
-    }
+    }*/
 
     defaultConfig {
         minSdk = 30

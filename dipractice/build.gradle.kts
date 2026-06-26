@@ -7,9 +7,10 @@ plugins {
 
 android {
     namespace = "com.sinoptik_.dipractice"
-    compileSdk {
+    compileSdk = libs.versions.compileSdk.get().toInt()
+ /*   compileSdk {
         version = release(36)
-    }
+    }*/
 
     defaultConfig {
 

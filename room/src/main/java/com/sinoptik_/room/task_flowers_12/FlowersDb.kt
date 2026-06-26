@@ -1,0 +1,92 @@
+package com.sinoptik_.room.task_flowers_12
+
+import android.content.Context
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
+import com.sinoptik_.room.task_flowers_12.FlowersDb.Companion.INSTANCE
+import com.sinoptik_.room.task_flowers_12.entity.Bouquet
+import com.sinoptik_.room.task_flowers_12.entity.BouquetComponent
+import com.sinoptik_.room.task_flowers_12.entity.Flower
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+
+
+@Database(
+    entities = [
+        Flower::class,
+        Bouquet::class,
+        BouquetComponent::class],
+    version = 1,
+    exportSchema = true
+)
+abstract class FlowersDb : RoomDatabase() {
+    abstract fun dao(): FlowerShopDao
+
+    companion object {
+        @Volatile
+        private var INSTANCE: FlowersDb? = null
+        fun getDatabase(context: Context, scope: CoroutineScope) = INSTANCE ?: synchronized(this) {
+            val instance = Room.databaseBuilder(
+                context = context.applicationContext,
+                klass = FlowersDb::class.java,
+                name = "flowers_database"
+            )
+                .addCallback(
+                    FlowerShopDatabaseCallback(
+                        scope,
+                        { INSTANCE!! })
+                )
+                .build()
+            INSTANCE = instance
+            instance
+        }
+    }
+
+
+}
+
+
+object StartData{
+    suspend fun populateDatabase(dao: FlowerShopDao) {
+        val defaultFlowers = listOf(
+            Flower(id = 1, name = "Роза красная", count = 50),
+            Flower(id = 2, name = "Роза белая", count = 30),
+            Flower(id = 3, name = "Тюльпан", count = 100),
+            Flower(id = 4, name = "Хризантема", count = 40),
+            Flower(id = 5, name = "Пион", count = 25),
+            Flower(id = 6, name = "Лилия", count = 15),
+            Flower(id = 7, name = "Гвоздика", count = 60),
+            Flower(id = 8, name = "Орхидея", count = 10),
+            Flower(id = 9, name = "Нарцисс", count = 45),
+            Flower(id = 10, name = "Ромашка", count = 80)
+        )
+        dao.insertFlowers(defaultFlowers)
+
+        val mixBouquetId = dao.insertBouquet(Bouquet(id = 1, name = "Весенний Микс"))
+        val roseBouquetId = dao.insertBouquet(Bouquet(id = 2, name = "Моно-Букет из роз"))
+
+        val components = listOf(
+            BouquetComponent(bouquetId = mixBouquetId, flowerId = 2, count = 3),
+            BouquetComponent(bouquetId = mixBouquetId, flowerId = 3, count = 2),
+            BouquetComponent(bouquetId = roseBouquetId, flowerId = 1, count = 11)
+        )
+        dao.insertComponents(components)
+    }
+}
+
+class FlowerShopDatabaseCallback(
+    private val scope: CoroutineScope,
+    private val dbProvider: () -> FlowersDb
+) : RoomDatabase.Callback() {
+
+    override fun onCreate(db: SupportSQLiteDatabase) {
+        super.onCreate(db)
+        scope.launch {
+           StartData.populateDatabase(dbProvider().dao())
+        }
+    }
+
+}

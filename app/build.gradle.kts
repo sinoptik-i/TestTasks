@@ -7,9 +7,11 @@ plugins {
 
 android {
     namespace = "com.sinoptik_.effectivemobile"
-    compileSdk {
+
+    compileSdk = libs.versions.compileSdk.get().toInt()
+    /*compileSdk {
         version = release(36)
-    }
+    }*/
 
     defaultConfig {
         applicationId = "com.sinoptik_.effectivemobile"
@@ -72,5 +74,6 @@ dependencies {
     kapt(libs.dagger.compiler)
 
     implementation(project(":dipractice"))
+    implementation(project(":room"))
 
 }

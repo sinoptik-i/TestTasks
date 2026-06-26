@@ -42,7 +42,6 @@ val scopedModule = module {
             ServiceLogger(
                 api = get(),
                 data = params.get()
-
             )
         }
     }

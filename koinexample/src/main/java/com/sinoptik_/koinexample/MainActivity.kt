@@ -12,6 +12,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.core.view.WindowCompat.enableEdgeToEdge
+import com.sinoptik_.koinexample.koin.PaymentGateway
+import com.sinoptik_.koinexample.koin.PaymentType
 import com.sinoptik_.koinexample.ui.theme.EffectiveMobileTheme
 import com.sinoptik_.koinexample.utils.ActivityTracker
 import com.sinoptik_.koinexample.utils.TestMessagePrinter
@@ -32,12 +35,15 @@ class MainActivity : ComponentActivity(), AndroidScopeComponent {
 
     private val tracker: ActivityTracker by inject()
 
+    private val mir: PaymentGateway by inject (qualifier = PaymentType.MIR)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         Log.d(this.javaClass.simpleName, printer.printHello())
 
         tracker.cryMyName()
+        mir.cryMyName()
         startMyService()
 
         setContent {

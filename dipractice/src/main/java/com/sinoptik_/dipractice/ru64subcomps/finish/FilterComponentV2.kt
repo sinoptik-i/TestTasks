@@ -4,12 +4,33 @@ import android.content.Context
 import com.sinoptik_.dipractice.ru64subcomps.fragments.Fragment1
 import com.sinoptik_.dipractice.ru64subcomps.fragments.Fragment2
 import com.sinoptik_.dipractice.ru64subcomps.start.DaggerFiltersComponent
+import dagger.Binds
 
 import dagger.Component
 import dagger.Module
 import dagger.Subcomponent
+import javax.inject.Inject
 
-@Component(modules = [SubcomponentsModule::class])
+interface Api
+interface Api2
+
+class AnyApi @Inject constructor() : Api
+class AnyApi2 @Inject constructor() : Api2
+
+@Module
+abstract class AnyModule {
+
+    @Binds
+    abstract fun bindApi(anyApi: AnyApi): Api
+
+    @Binds
+    abstract fun bindApi2(anyApi2: AnyApi2): Api2
+}
+
+
+@Component(
+    modules = [SubcomponentsModule::class],
+)
 abstract class FiltersComponentV2 {
 
     companion object {

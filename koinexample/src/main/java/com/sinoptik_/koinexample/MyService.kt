@@ -53,7 +53,7 @@ class MyService : Service(), KoinComponent
 
     override fun onDestroy() {
         super.onDestroy()
-        scope.close()
+        scope?.close()
     }
 
 }
