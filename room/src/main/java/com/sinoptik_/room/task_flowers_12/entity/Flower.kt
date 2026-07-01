@@ -1,5 +1,6 @@
 package com.sinoptik_.room.task_flowers_12.entity
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -7,5 +8,8 @@ import androidx.room.PrimaryKey
 data class Flower(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val name: String,
-    val count: Int
+    val count: Int,
+
+   // @ColumnInfo(defaultValue = "TERRA INCOGNITA")
+    val country: String= "TERRA INCOGNITA"
 )

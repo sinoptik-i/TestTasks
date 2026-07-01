@@ -11,6 +11,7 @@ import com.sinoptik_.room.task_flowers_12.entity.BouquetComponent
 import com.sinoptik_.room.task_flowers_12.entity.Flower
 import com.sinoptik_.room.task_flowers_12.init.DbInit
 import com.sinoptik_.room.task_flowers_12.init.StartData
+import com.sinoptik_.room.task_flowers_12.migrations.MIGRATION_1_2
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import javax.inject.Provider
@@ -21,7 +22,7 @@ import javax.inject.Provider
         Flower::class,
         Bouquet::class,
         BouquetComponent::class],
-    version = 1,
+    version = 2,
     exportSchema = true
 )
 abstract class FlowersDb : RoomDatabase() {
@@ -38,6 +39,7 @@ abstract class FlowersDb : RoomDatabase() {
                 klass = FlowersDb::class.java,
                 name = "flowers_database"
             )
+                .addMigrations(MIGRATION_1_2)
                 .addCallback(
                     FlowerShopDatabaseCallback(
                         scope = scope,
