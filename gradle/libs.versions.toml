@@ -28,6 +28,7 @@ room = "2.7.0"
 ksp = "2.0.21-1.0.28"
 compileSdk = "37"
 kotlinxCoroutinesTest = "1.7.3"
+sqliteKtx = "2.6.2"
 
 
 [libraries]
@@ -69,6 +70,7 @@ room-compiler = { group = "androidx.room", name = "room-compiler", version.ref =
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 androidx-room-testing = { module = "androidx.room:room-testing", version.ref = "room" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
+androidx-sqlite-ktx = { group = "androidx.sqlite", name = "sqlite-ktx", version.ref = "sqliteKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

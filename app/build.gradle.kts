@@ -3,15 +3,15 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.kapt)
+
+    alias(libs.plugins.google.devtools.ksp)
+    id("androidx.room")
 }
 
 android {
     namespace = "com.sinoptik_.effectivemobile"
 
     compileSdk = libs.versions.compileSdk.get().toInt()
-    /*compileSdk {
-        version = release(36)
-    }*/
 
     defaultConfig {
         applicationId = "com.sinoptik_.effectivemobile"
@@ -45,6 +45,10 @@ android {
     }
 }
 
+room {
+    schemaDirectory("$projectDir/schemas")
+}
+
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -54,6 +58,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.sqlite.ktx)
     implementation(libs.material)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
@@ -72,6 +77,10 @@ dependencies {
 
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
+
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
 
     implementation(project(":dipractice"))
     implementation(project(":room"))

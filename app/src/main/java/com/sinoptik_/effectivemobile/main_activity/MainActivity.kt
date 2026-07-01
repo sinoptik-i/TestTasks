@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -32,68 +33,55 @@ class MainActivity : ComponentActivity() {
 
     val scope = CoroutineScope(Dispatchers.IO)
 
-//    @Inject
-//    @ACar1
-//    lateinit var car1: Car
-//
-//    @Inject
-//    @ACar2
-//    lateinit var car2: Car
-//
-//    @Inject
-//    @ACar3
-//    lateinit var car3: Car
-
-
-
-
+    private val viewModel: ViewModelMA by viewModels{
+        (application as App).appComponent.getViewModelFactory()
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
 
         val task3 = Task3()
         val task5 = Task5(this)
-        /*timeLogger()
-        annotationTest()*/
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             EffectiveMobileTheme {
                 Column(
-                    modifier = Modifier.Companion.fillMaxSize(),
+                    modifier = Modifier.fillMaxSize(),
                     verticalArrangement = Arrangement.Center
                 ) {
                     Button(
-                        modifier = Modifier.Companion.fillMaxWidth(),
+                        modifier = Modifier.fillMaxWidth(),
                         onClick = {
                             Log.i("LOG_TASK3", "${task3.findInt()}")
                         }) {
                         Text("Task3")
                     }
                     Button(
-                        modifier = Modifier.Companion.fillMaxWidth(),
+                        modifier = Modifier.fillMaxWidth(),
                         onClick = {
                             task5.save(scope)
                         }) {
                         Text("Task5 save")
                     }
                     Button(
-                        modifier = Modifier.Companion.fillMaxWidth(),
+                        modifier = Modifier.fillMaxWidth(),
                         onClick = {
                             task5.load()
                         }) {
                         Text("Task5 load")
+                    }
+                    Button(
+                        modifier = Modifier.fillMaxWidth(),
+                        onClick = {
+                            viewModel.testFlowersDb()
+                        }) {
+                        Text("Room Task1")
                     }
                 }
             }
         }
     }
 
-//    private fun annotationTest() {
-//
-//        (application as App).carComponent.inject(this)
-//        car1.drive()
-//        car2.drive()
-//        car3.drive()
-//    }
 
     private fun timeLogger() {
         val startTimeLogger = StartTimeLogger()
