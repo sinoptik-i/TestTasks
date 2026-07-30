@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.sinoptik_.effectivemobile.di.App
 import com.sinoptik_.effectivemobile.di.AppComponent
 import com.sinoptik_.room.task_flowers_12.FlowersRepository
-import com.sinoptik_.room.task_flowers_12.TestDb
+import com.sinoptik_.room.task_flowers_12.test.TestDb
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

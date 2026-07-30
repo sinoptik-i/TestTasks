@@ -1,4 +1,6 @@
-package com.sinoptik_.room.task_flowers_12
+package com.sinoptik_.room.task_flowers_12.test
+
+import com.sinoptik_.room.task_flowers_12.FlowersRepository
 
 class TestDb(private val repo: FlowersRepository) {
 
@@ -36,7 +38,7 @@ class TestDb(private val repo: FlowersRepository) {
     }
 
     suspend fun test() {
-        printAllFlowers()
+        printUsedFlowers()
         printBouquets()
         printAvailableBouquets()
         repeat(4) {
@@ -44,10 +46,14 @@ class TestDb(private val repo: FlowersRepository) {
         }
         println("-----------------------------------------------------")
         println("TRY BOUGHT 4 BOUQUETS ID=2")
-        printAllFlowers()
         printUsedFlowers()
         printBouquets()
         printAvailableBouquets()
+    }
+
+
+    suspend fun test2(){
+
     }
 
 }

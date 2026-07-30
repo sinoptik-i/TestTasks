@@ -2,7 +2,6 @@ package com.sinoptik_.room.task_flowers_12
 
 import com.sinoptik_.room.task_flowers_12.entity.BouquetRecipe
 import com.sinoptik_.room.task_flowers_12.entity.Flower
-import com.sinoptik_.room.task_flowers_12.init.DbInit
 import com.sinoptik_.room.task_flowers_12.init.StartData
 import javax.inject.Inject
 
@@ -18,7 +17,7 @@ class FlowersRepositoryImpl @Inject constructor(
     private val dao: FlowerShopDao
 ) : FlowersRepository {
     private suspend fun safeDao(): FlowerShopDao{
-        DbInit.isReady.await()
+     //  DbInit.isReady.await()
         return dao
     }
 
@@ -29,7 +28,7 @@ class FlowersRepositoryImpl @Inject constructor(
     private suspend fun checkBouquetAvailability(targetBouquet: BouquetRecipe): Boolean {
         for (component in targetBouquet.components) {
             val flower = safeDao().getFlowerById(component.flowerId) ?: return false
-            if (flower.count < component.count) {
+            if (flower.count < component.countInBouquet) {
                 return false
             }
         }
@@ -49,7 +48,7 @@ class FlowersRepositoryImpl @Inject constructor(
             return false
         for (component in targetBouquet.components) {
             val flower = safeDao().getFlowerById(component.flowerId)!!
-            val newCount = flower.count - component.count
+            val newCount = flower.count - component.countInBouquet
             safeDao().updateFlowerCount(component.flowerId, newCount)
         }
         return true

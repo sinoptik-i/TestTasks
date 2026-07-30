@@ -25,9 +25,9 @@ object StartData {
         val roseBouquetId = dao.insertBouquet(Bouquet(id = 2, name = "Моно-Букет из роз"))
 
         val components = listOf(
-            BouquetComponent(bouquetId = mixBouquetId, flowerId = 2, count = 3),
-            BouquetComponent(bouquetId = mixBouquetId, flowerId = 3, count = 2),
-            BouquetComponent(bouquetId = roseBouquetId, flowerId = 1, count = 11)
+            BouquetComponent(bouquetId = mixBouquetId, flowerId = 2, countInBouquet = 3),
+            BouquetComponent(bouquetId = mixBouquetId, flowerId = 3, countInBouquet = 2),
+            BouquetComponent(bouquetId = roseBouquetId, flowerId = 1, countInBouquet = 11)
         )
         dao.insertComponents(components)
     }

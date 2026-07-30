@@ -6,10 +6,17 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "flowers")
 data class Flower(
-    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = FLOWER_ID)
+    val id: Long = 0,
+
+    @ColumnInfo(name = FLOWER_NAME)
     val name: String,
     val count: Int,
-
-   // @ColumnInfo(defaultValue = "TERRA INCOGNITA")
-    val country: String= "TERRA INCOGNITA"
-)
+    val country: String = "TERRA INCOGNITA"
+) {
+    companion object {
+        const val FLOWER_ID = "flower_id"
+        const val FLOWER_NAME = "flower_name"
+    }
+}

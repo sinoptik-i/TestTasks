@@ -7,8 +7,9 @@ import com.sinoptik_.room.task_flowers_12.FlowerShopDao
 import com.sinoptik_.room.task_flowers_12.FlowersDb
 import com.sinoptik_.room.task_flowers_12.FlowersRepository
 import com.sinoptik_.room.task_flowers_12.FlowersRepositoryImpl
-import com.sinoptik_.room.task_flowers_12.TestDb
+import com.sinoptik_.room.task_flowers_12.test.TestDb
 import com.sinoptik_.room.task_flowers_12.init.StartData
+import com.sinoptik_.room.task_flowers_12.test.TestSql
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest
 import org.junit.After
@@ -23,7 +24,7 @@ class DbTest {
     private lateinit var dao: FlowerShopDao
     private lateinit var repo: FlowersRepository
     private lateinit var testDB: TestDb
-    private val scope = TestScope()
+    private lateinit var testSql: TestSql
 
     @Before
     fun createDb() {
@@ -31,19 +32,14 @@ class DbTest {
             ApplicationProvider.getApplicationContext(),
             FlowersDb::class.java
         )
-//            .addCallback(
-//                FlowerShopDatabaseCallback(
-//                    scope,
-//                    { db })
-//            )
             .allowMainThreadQueries()
             .build()
         dao = db.dao()
         repo = FlowersRepositoryImpl(dao)
         testDB = TestDb(repo)
+        testSql= TestSql(db)
 
     }
-
     @After
     fun closeDb() {
         db.close()
@@ -54,6 +50,16 @@ class DbTest {
     fun test() = runTest {
         StartData.populateDatabase(dao)
         testDB.test()
+    }
+
+    @Test
+    fun testSql()=testSql.testInnerJoin()
+
+    @Test
+    fun testPrintBouquets()=runTest {
+        dao.getBouquetRecipesFWC().forEach {
+            println(it)
+        }
     }
 }
 
