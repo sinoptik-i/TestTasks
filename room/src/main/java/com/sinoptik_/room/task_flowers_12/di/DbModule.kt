@@ -14,7 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import javax.inject.Provider
 import javax.inject.Singleton
-
+/**/
 @Module
 abstract class DbModule {
 
@@ -39,9 +39,9 @@ abstract class DbModule {
 
     }
 
-    @Binds
+/*    @Binds
     @Singleton
-    abstract fun bindContext(app: Application): Context
+    abstract fun bindContext(app: Application): Context*/
 
     @Binds
     @Singleton

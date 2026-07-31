@@ -84,5 +84,6 @@ dependencies {
 
     implementation(project(":dipractice"))
     implementation(project(":room"))
+    implementation(project(":WebPractice"))
 
 }

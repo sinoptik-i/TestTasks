@@ -2,6 +2,7 @@ package com.sinoptik_.effectivemobile.main_activity
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -14,30 +15,29 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
 import com.sinoptik_.effectivemobile.di.App
-import com.sinoptik_.effectivemobile.di.test.ACar1
-import com.sinoptik_.effectivemobile.di.test.ACar2
-import com.sinoptik_.effectivemobile.di.test.ACar3
-import com.sinoptik_.effectivemobile.di.test.Car
 import com.sinoptik_.effectivemobile.practice_kotlin.ru66.Task5
 import com.sinoptik_.effectivemobile.practice_kotlin.task2.StartTimeLogger
 import com.sinoptik_.effectivemobile.practice_kotlin.task3.Task3
 import com.sinoptik_.effectivemobile.ui.theme.EffectiveMobileTheme
-import com.sinoptik_.room.task_flowers_12.FlowersRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {
 
     val scope = CoroutineScope(Dispatchers.IO)
 
-    private val viewModel: ViewModelMA by viewModels{
+    private val viewModel: ViewModelMA by viewModels {
         (application as App).appComponent.getViewModelFactory()
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
+        viewModel.startNetworkMonitor(
+            { message ->
+                showNetworkToast(message)
+            }
+        )
         val task3 = Task3()
         val task5 = Task5(this)
 
@@ -82,12 +82,20 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    private fun showNetworkToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
 
     private fun timeLogger() {
         val startTimeLogger = StartTimeLogger()
         startTimeLogger.startLog(scope)
     }
 
+    override fun onStop() {
+        viewModel.stopNetworkMonitor()
+        super.onStop()
+    }
 
     override fun onDestroy() {
         scope.cancel()

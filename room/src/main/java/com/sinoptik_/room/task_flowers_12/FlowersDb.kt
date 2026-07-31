@@ -48,11 +48,11 @@ abstract class FlowersDb : RoomDatabase() {
                 )
                 .build()
 
-            scope.launch {
+     /*       scope.launch {
                 db.query(SimpleSQLiteQuery("SELECT 1")).close()
 //                db.compileStatement("SELECT 1").executeInsert()
 //                db.compileStatement("SELECT 1").execute()
-            }
+            }*/
             return db
 
         }
